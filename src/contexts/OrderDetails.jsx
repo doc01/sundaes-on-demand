@@ -26,10 +26,9 @@ function useOrderDetails() {
 
 const calculateSubtotal = (optionType, optionCounts) => {
   let optionCount = 0;
-  for (const count of optionCounts[optionType]) {
+  for (const count of optionCounts[optionType].values()) {
     optionCount += count;
   }
-
   return optionCount * pricePerItem[optionType];
 };
 
@@ -39,7 +38,7 @@ function OrderDetailsProvider(props) {
     toppings: new Map(),
   });
 
-  const zeroCurrency = formatCurrency(0)
+  const zeroCurrency = formatCurrency(0);
 
   const [totals, setTotals] = useState({
     scoops: zeroCurrency,
@@ -54,7 +53,7 @@ function OrderDetailsProvider(props) {
     setTotals({
       scoops: formatCurrency(scoopsSubtotal),
       toppings: formatCurrency(toppingsSubtotal),
-      grandTotal: formatCurrency(grandTotal)
+      grandTotal: formatCurrency(grandTotal),
     });
   }, [optionCounts]);
 
