@@ -6,7 +6,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 
 export default function SummaryForm() {
-  const [tcChecked, setTcChecked] = useState(false);
+  const [toChecked, setToChecked] = useState(false);
 
   const popover = (
     <Popover id="termsandconditions-popover">
@@ -28,12 +28,12 @@ export default function SummaryForm() {
       <Form.Group controlId="terms-and-conditions">
         <Form.Check
           type="checkbox"
-          checked={tcChecked}
-          onChange={(e) => setTcChecked(e.target.checked)}
+          checked={toChecked}
+          onChange={(e) => setToChecked(e.target.checked)}
           label={checkboxLabel}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" disabled={!tcChecked}>
+      <Button variant="primary" type="submit" disabled={!toChecked}>
         Confirm order
       </Button>
     </Form>
