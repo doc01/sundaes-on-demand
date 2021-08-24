@@ -2,7 +2,6 @@ import { createContext, useContext, useState, useMemo, useEffect } from "react";
 import { pricePerItem } from "../constants";
 import { formatCurrency } from "../utillities";
 
-
 const OrderDetails = createContext();
 
 // create custom hook to check whether we're inside a provider
@@ -60,9 +59,15 @@ function OrderDetailsProvider(props) {
 
       setOptionCounts(newOptionCounts);
     }
+    function resetOrder() {
+      setOptionCounts({
+        scoops: new Map(),
+        toppings: new Map(),
+      });
+    }
     // getter: object containing options counts for scoops and toppings, subtotal and totals
     //setter: updateOptionCount
-    return [{ ...optionCounts, totals }, updateItemCount];
+    return [{ ...optionCounts, totals }, updateItemCount, resetOrder];
   }, [optionCounts, totals]);
 
   return <OrderDetails.Provider value={value} {...props} />;
